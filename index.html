@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="home-navbar.css">
+  <link rel="icon" type="image/png" href="ee916227-2856-4ab9-ab58-fe7955ade32e-1(3).png">
+
+  <script defer src="script.js"></script>
+
+  <title>Tranquil Wellness</title>
+
+  <style>
+    body {
+          font-family: Arial, sans-serif;
+          background-color: #333;
+          margin: 0;
+          padding: 0;
+      }
+
+      .container {
+          max-width: 400px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #222;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          color: #fff;
+          padding-top: 30%;
+      }
+
+      h1 {
+          text-align: center;
+          margin-top: 10px;
+          color: #fff;
+      }
+
+      input[type="number"], input[type="text"], select, button {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #444;
+          border-radius: 4px;
+          box-sizing: border-box;
+          background-color: #333;
+          color: #fff;
+      }
+
+      button {
+          background-color: #4CAF50;
+          color: white;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background-color: #45a049;
+      }
+
+      #result {
+          margin-top: 10px;
+      }
+
+      #workout-plan {
+          margin-top: 10px;
+          white-space: pre-line;
+      }
+
+      #food-recommendation {
+          margin-top: 10px;
+          padding-bottom: 10px;
+          white-space: pre-line;
+      }
+
+</style>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="top-bar">
+      <div class="top-bar__content">
+        <section class="instagram">
+          <a href="https://www.instagram.com/tranquil_wellness/" class="fa-brands fa-square-instagram fa-xl"></a>
+        
+          <span>@tranquil_wellness</span>
+        </section>
+        <section class="email">
+          <a href="mailto:tranquil_wellness@gmail.com" class="fa-regular fa-envelope fa-xl"></a>
+          <span>tranquil_wellness@gmail.com</span>
+        </section>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="bottom-bar__content">
+        <a href="www.npsichess.com/home" class="logo">
+          <img class="logo__img" src="favicon-hack1.jpeg" alt="logo">
+          <span>Tranquil Wellness</span>
+       
+        </a>
+    
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="index.html">Home</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="contact.html">About Us</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="events.html">Learn More</a>
+            </li>
+          </ul>
+        </nav>
+  
+        <div class="hamburger">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <label for="weight">Weight (in kilograms):</label>
+    <input type="number" id="weight" placeholder="Enter weight">
+    <label for="height">Height (in meters):</label>
+    <input type="number" id="height" placeholder="Enter height">
+
+    <label for="body-part-type">Which type of body do you wish to build?</label>
+    <select id="body-part-type">
+        <option value="shredded">Shredded</option>
+        <option value="lean">Lean</option>
+    </select>
+
+    <label for="body-part">Which body part do you want to strengthen?</label>
+    <select id="body-part">
+        <option value="forearm">Forearm</option>
+        <option value="chest">Chest</option>
+        <option value="thighs">Thighs</option>
+        <option value="calves">Calves</option>
+        <option value="knees">Knees</option>
+    </select>
+
+    <button onclick="calculateBMI()">Calculate</button>
+    <div id="result"></div>
+</div>
+
+</header>
+
+
+</body>
+<script>
+  function calculateBMI() {
+      var weight = document.getElementById('weight').value;
+      var height = document.getElementById('height').value;
+      var bodyPartType = document.getElementById('body-part-type').value;
+      var bodyPart = document.getElementById('body-part').value;
+
+      if (weight === '' || height === '') {
+          alert("Please enter both weight and height.");
+          return;
+      }
+
+      var bmi = weight / (height * height);
+      var result = document.getElementById('result');
+      result.innerHTML = 'Your BMI is: ' + bmi.toFixed(2);
+
+      var workoutPlan = '';
+      var foodRecommendation = '';
+
+      if (bodyPartType === 'shredded') {
+          if (bodyPart === 'bicep') {
+              workoutPlan = 'Shredded Bicep Workout Plan:\n- Barbell Curls: 3 sets of 8-10 reps\n- Hammer Curls: 3 sets of 10-12 reps\n- Concentration Curls: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Bicep:\n- Lean protein sources like chicken breast, fish, and tofu\n- Complex carbohydrates like brown rice and quinoa\n- Healthy fats like avocados and nuts\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'gluteus') {
+              workoutPlan = 'Shredded Gluteus Workout Plan:\n- Squats: 4 sets of 8-10 reps\n- Lunges: 3 sets of 10-12 reps\n- Glute Bridges: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Gluteus:\n- Lean protein sources like chicken breast, turkey, and beans\n- Complex carbohydrates like sweet potatoes and whole wheat bread\n- Healthy fats like olive oil and almonds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'forearm') {
+              workoutPlan = 'Shredded Forearm Workout Plan:\n- Wrist Curls: 3 sets of 8-10 reps\n- Reverse Curls: 3 sets of 10-12 reps\n- Farmer\'s Walk: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Forearm:\n- Lean protein sources like chicken breast, fish, and eggs\n- Complex carbohydrates like quinoa and whole grain pasta\n- Healthy fats like avocado and olive oil\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'chest') {
+              workoutPlan = 'Shredded Chest Workout Plan:\n- Bench Press: 3 sets of 8-10 reps\n- Push-ups: 3 sets of 10-12 reps\n- Dumbbell Flyes: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Chest:\n- Lean protein sources like chicken breast, lean beef, and tofu\n- Complex carbohydrates like brown rice and whole wheat bread\n- Healthy fats like nuts and seeds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'thighs') {
+              workoutPlan = 'Shredded Thighs Workout Plan:\n- Leg Press: 3 sets of 8-10 reps\n- Leg Extensions: 3 sets of 10-12 reps\n- Lunges: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Thighs:\n- Lean protein sources like chicken breast, fish, and lentils\n- Complex carbohydrates like quinoa and sweet potatoes\n- Healthy fats like olive oil and avocado\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'calves') {
+              workoutPlan = 'Shredded Calves Workout Plan:\n- Standing Calf Raises: 3 sets of 8-10 reps\n- Seated Calf Raises: 3 sets of 10-12 reps\n- Jump Rope: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Shredded Calves:\n- Lean protein sources like chicken breast, lean beef, and Greek yogurt\n- Complex carbohydrates like whole wheat bread and brown rice\n- Healthy fats like nuts and seeds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'knees') {
+              workoutPlan = 'Shredded Knees Workout Plan:\n- Knee Extensions: 3 sets of 8-10 reps\n- Hamstring Curls: 3 sets of 10-12 reps\n- Cycling: 30 minutes per day';
+              foodRecommendation = 'Food Recommendation for Shredded Knees:\n- Lean protein sources like chicken breast, fish, and lentils\n- Complex carbohydrates like quinoa and whole wheat pasta\n- Healthy fats like olive oil and avocado\n- Plenty of fruits and vegetables';
+          }
+      } else if (bodyPartType === 'lean') {
+          if (bodyPart === 'bicep') {
+              workoutPlan = 'Lean Bicep Workout Plan:\n- Chin-ups: 3 sets of 8-10 reps\n- Preacher Curls: 3 sets of 10-12 reps\n- Incline Dumbbell Curls: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Bicep:\n- Lean protein sources like chicken breast, turkey, and cottage cheese\n- Complex carbohydrates like quinoa and whole wheat bread\n- Healthy fats like nuts and seeds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'gluteus') {
+              workoutPlan = 'Lean Gluteus Workout Plan:\n- Step-ups: 3 sets of 8-10 reps\n- Bulgarian Split Squats: 3 sets of 10-12 reps\n- Hip Thrusts: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Gluteus:\n- Lean protein sources like chicken breast, fish, and lentils\n- Complex carbohydrates like brown rice and quinoa\n- Healthy fats like avocado and olive oil\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'forearm') {
+              workoutPlan = 'Lean Forearm Workout Plan:\n- Farmer\'s Walk: 3 sets of 8-10 reps\n- Reverse Curls: 3 sets of 10-12 reps\n- Grip Training: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Forearm:\n- Lean protein sources like chicken breast, fish, and Greek yogurt\n- Complex carbohydrates like sweet potatoes and whole grain bread\n- Healthy fats like nuts and seeds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'chest') {
+              workoutPlan = 'Lean Chest Workout Plan:\n- Push-ups: 3 sets of 8-10 reps\n- Dumbbell Bench Press: 3 sets of 10-12 reps\n- Cable Flyes: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Chest:\n- Lean protein sources like chicken breast, turkey, and tofu\n- Complex carbohydrates like quinoa and whole wheat pasta\n- Healthy fats like olive oil and avocado\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'thighs') {
+              workoutPlan = 'Lean Thighs Workout Plan:\n- Squats: 3 sets of 8-10 reps\n- Lunges: 3 sets of 10-12 reps\n- Leg Press: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Thighs:\n- Lean protein sources like chicken breast, fish, and beans\n- Complex carbohydrates like brown rice and whole wheat bread\n- Healthy fats like nuts and avocados\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'calves') {
+              workoutPlan = 'Lean Calves Workout Plan:\n- Calf Raises: 3 sets of 8-10 reps\n- Skipping Rope: 3 sets of 10-12 reps\n- Jumping Jacks: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Calves:\n- Lean protein sources like chicken breast, fish, and Greek yogurt\n- Complex carbohydrates like quinoa and sweet potatoes\n- Healthy fats like olive oil and almonds\n- Plenty of fruits and vegetables';
+          } else if (bodyPart === 'knees') {
+              workoutPlan = 'Lean Knees Workout Plan:\n- Cycling: 30 minutes per day\n- Leg Extensions: 3 sets of 10-12 reps\n- Hamstring Curls: 3 sets of 10-12 reps';
+              foodRecommendation = 'Food Recommendation for Lean Knees:\n- Lean protein sources like chicken breast, fish, and lentils\n- Complex carbohydrates like brown rice and whole wheat pasta\n- Healthy fats like avocado and olive oil\n- Plenty of fruits and vegetables';
+          }
+      }
+
+      var resultElement = document.createElement('div');
+      resultElement.id = 'result';
+
+      var bmiElement = document.createElement('p');
+      bmiElement.textContent = 'Your BMI is: ' + bmi.toFixed(2);
+      resultElement.appendChild(bmiElement);
+
+      var workoutElement = document.createElement('p');
+      workoutElement.id = 'workout-plan';
+      workoutElement.textContent = workoutPlan;
+      resultElement.appendChild(workoutElement);
+
+      var foodElement = document.createElement('p');
+      foodElement.id = 'food-recommendation';
+      foodElement.textContent = foodRecommendation;
+      resultElement.appendChild(foodElement);
+
+      result.innerHTML = '';
+      result.appendChild(resultElement);
+  }
+</script>
+
+</body>
+</html>
